@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: github_analytics
+    tables:
+      - name: raw_github_events
+        description: "Raw GitHub Archive events loaded from GCS. Partitioned by created_at (DAY), clustered by type."
+        columns:
+          - name: id
+            description: "Unique event ID"
+          - name: type
+            description: "GitHub event type (PushEvent, PullRequestEvent, etc.)"
+          - name: created_at
+            description: "Timestamp of the event (partition column)"

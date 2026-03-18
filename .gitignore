@@ -205,3 +205,26 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# ── Project-specific: NEVER commit these ────────────────────────────────────
+
+# GCP Service Account keys
+airflow/keys/
+*.json.key
+
+# Terraform state & variable files (may contain infra details / secrets)
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfvars
+# Note: terraform/.terraform.lock.hcl should be committed (provider version lock)
+
+# Airflow runtime files
+airflow/.env
+airflow/logs/
+airflow/plugins/
+
+# dbt build artifacts
+dbt/target/
+dbt/dbt_packages/
+dbt/logs/

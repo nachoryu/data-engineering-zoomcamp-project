@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: fct_events_daily
+    description: >
+      Daily aggregated GitHub activity metrics. One row per day.
+      Used for the time-series tile in the Looker Studio dashboard.
+    columns:
+      - name: event_date
+        description: "Calendar date of the events"
+        tests:
+          - not_null
+          - unique
+      - name: total_events
+        description: "Total number of GitHub events on this date"
+        tests:
+          - not_null
+      - name: unique_actors
+        description: "Number of distinct GitHub users active on this date"
+      - name: unique_repos
+        description: "Number of distinct repositories that had activity on this date"
+
+  - name: fct_event_type_summary
+    description: >
+      Aggregated GitHub event counts by event type across the entire loaded date range.
+      Used for the categorical distribution tile in the Looker Studio dashboard.
+    columns:
+      - name: event_type
+        description: "GitHub event type name"
+        tests:
+          - not_null
+          - unique
+      - name: event_count
+        description: "Total number of events of this type"
+        tests:
+          - not_null
+      - name: pct_of_total
+        description: "Percentage of total events this type represents"
+
+  - name: fct_hourly_activity
+    description: >
+      Event counts by hour-of-day and day-of-week, useful for heatmap visualisation.
+    columns:
+      - name: event_hour
+        description: "Hour of day (0-23, UTC)"
+      - name: event_day_of_week
+        description: "Day of week (1=Sunday, 7=Saturday)"

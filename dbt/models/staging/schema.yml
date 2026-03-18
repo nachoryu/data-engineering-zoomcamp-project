@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_github_events
+    description: "Cleaned and flattened GitHub Archive events. One row per event."
+    columns:
+      - name: event_id
+        description: "Unique event identifier (warn on duplicates — GH Archive may include same event in adjacent hourly files)"
+        tests:
+          - not_null
+          - unique:
+              config:
+                severity: warn
+      - name: event_type
+        description: "GitHub event type"
+        tests:
+          - not_null
+          - accepted_values:
+              config:
+                severity: warn
+              values:
+                - PushEvent
+                - PullRequestEvent
+                - IssuesEvent
+                - WatchEvent
+                - ForkEvent
+                - CreateEvent
+                - DeleteEvent
+                - IssueCommentEvent
+                - PullRequestReviewEvent
+                - PullRequestReviewCommentEvent
+                - CommitCommentEvent
+                - ReleaseEvent
+                - PublicEvent
+                - MemberEvent
+                - GollumEvent
+                - SponsorshipEvent
+      - name: created_at
+        description: "Event timestamp"
+        tests:
+          - not_null
+      - name: event_date
+        description: "Event date (derived from created_at)"
+        tests:
+          - not_null
