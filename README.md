@@ -27,9 +27,9 @@ By building an automated pipeline, the dashboard always reflects the latest data
                            │ HTTP download (24 files/day)
                            ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│                   Apache Airflow (Docker)                        │
+│                   Apache Airflow (Docker)                       │
 │   DAG: github_archive_pipeline  │  schedule: daily @ 06:00 UTC  │
-│                                                                  │
+│                                                                 │
 │   Task 1: download_and_upload_to_gcs                            │
 │   Task 2: load_gcs_to_bigquery                                  │
 │   Task 3: run_dbt_transformations                               │
@@ -37,7 +37,7 @@ By building an automated pipeline, the dashboard always reflects the latest data
          │                       │
          ▼                       ▼
 ┌────────────────┐    ┌─────────────────────────────────────────┐
-│  GCS (Data     │    │          BigQuery (Data Warehouse)       │
+│  GCS (Data     │    │          BigQuery (Data Warehouse)      │
 │  Lake)         │    │                                         │
 │                │───▶│  raw_github_events                      │
 │  raw/YYYY/     │    │  ├── Partition: DATE(created_at)        │
@@ -52,10 +52,10 @@ By building an automated pipeline, the dashboard always reflects the latest data
                                        │
                                        ▼
                       ┌────────────────────────────────────────┐
-                      │        Looker Studio Dashboard          │
+                      │        Looker Studio Dashboard         │
                       │                                        │
                       │  Tile 1: Event type distribution       │
-                      │          (Pie chart)             │
+                      │          (Pie chart)                   │
                       │  Tile 2: Daily activity trend          │
                       │          (Time series line chart)      │
                       └────────────────────────────────────────┘
