@@ -251,7 +251,7 @@ dbt test --profiles-dir .
 
 ## Dashboard
 
-> Link: *(add Looker Studio URL after publishing)*
+> **[Link to the dashboard](https://lookerstudio.google.com/reporting/fcff3712-d2fd-4d39-8549-501462ccf1ee)**
 
 | Tile | Chart Type | Data Source | Description |
 |---|---|---|---|
